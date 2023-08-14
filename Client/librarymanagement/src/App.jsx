@@ -7,6 +7,7 @@ import {Routes,Route} from "react-router-dom"
 
 import "./styles/main.scss"
 import Home from './pages/home/Home'
+import Dashboard from './pages/dashboard/Dashboard'
 function App() {
   
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/signin' element={<Signin/>} />
         <Route path='/signup'  element={<Signup/>} />
+        <Route path='/dashboard' element={<Dashboard/>} />
  
 
       </Routes>

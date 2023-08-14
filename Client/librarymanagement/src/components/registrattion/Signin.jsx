@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import "./registration.scss";
 import "../../styles/components/_button.scss"
+import { useDispatch } from "react-redux";
+import { signin } from "../../redux/authSlice";
+
+
+
+
 const Signin = () => {
 
-
+const dispatch=useDispatch()
 
   const [state,setState]=useState({
     email:'',
@@ -19,6 +25,17 @@ const Signin = () => {
     })
   }
 
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    dispatch(signin({
+      email:state.email,
+      password:state.password  
+    }))
+  }
+
+
+
+
   return (
 
     
@@ -26,7 +43,7 @@ const Signin = () => {
       <div className="signup-form">
         <div className="signup-form__wrapper">
 
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit}>
                 <h4>Sign In</h4>
 
             

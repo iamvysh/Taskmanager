@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./registration.scss";
 import "../../styles/components/_button.scss"
+import {useDispatch} from "react-redux"
+import { register } from "../../redux/authSlice";
 const Signup = () => {
+
+  const dispatch=useDispatch()
 
   const [state,setState]=useState({
     email:'',
@@ -10,7 +14,14 @@ const Signup = () => {
   })
 
   const handleSubmit=(e)=>{
+      e.preventDefault()
 
+      dispatch(
+        register({
+        username:state.username,
+        password:state.password,
+        email:state.email, 
+      }))
   }
 
   const handleChange=(e)=>{
@@ -20,7 +31,7 @@ const Signup = () => {
 
     })
   }
-  console.log(state.email,state.password,state.username)
+  // console.log(state.email,state.password,state.username)
 
 
   return (
@@ -55,7 +66,7 @@ const Signup = () => {
             />
             </div>
             <div className="form-group">
-            <button className="button">Sign Up</button>
+            <button className="button" >Sign Up</button>
           </div>
 
             </form>

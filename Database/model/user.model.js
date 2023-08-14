@@ -32,7 +32,7 @@ userSchema.methods.comparePassword=function(password,next){
         if(err){
             return next(err,false)
         }
-        return nexr(null,match)
+        return next(null,match)
     })
 }
 

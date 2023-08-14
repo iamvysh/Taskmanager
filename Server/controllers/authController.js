@@ -3,7 +3,9 @@ const jwt = require("jsonwebtoken");
 const validator = require("email-validator");
 
 const register = async (req, res) => {
+  console.log(req.body,"req"); 
   const { email, password, username } = req.body;
+  console.log(username)
   try {
     if (!username) return res.status(400).send("username is required");
     if (!email) return res.status(400).send("email is required");
@@ -47,19 +49,28 @@ const signin = async (req, res) => {
 
     user.comparePassword(password, (err, match) => {
       if (!match || err) return res.status(400).send("password does not match");
+
       let token = jwt.sign({ _id: user._id }, "ew23243weqdf3rtqfsq34ref", {
         expiresIn: "24h",
       });
-    });
 
-    res.staus(200).send({
-      token,
-      username: user.username,
-      email: user.email,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
+      
+      res.status(200).send({
+        token,
+        username: user.username,
+        email: user.email,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      });
     });
   } catch (error) {
     res.status(400).send("login failed");
   }
 };
+;
+
+
+module.exports={
+  signin,
+  register
+}
