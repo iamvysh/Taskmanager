@@ -8,6 +8,7 @@ import {Routes,Route} from "react-router-dom"
 import "./styles/main.scss"
 import Home from './pages/home/Home'
 import Dashboard from './pages/dashboard/Dashboard'
+import Taskmanager from './pages/taskmanagement/Taskmanager'
 function App() {
   
 
@@ -20,7 +21,8 @@ function App() {
         <Route path='/signin' element={<Signin/>} />
         <Route path='/signup'  element={<Signup/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
- 
+        <Route path='/taskmanager' element={<Taskmanager/>} />
+        <Route path='/dashboard' element={<Dashboard/>} />
 
       </Routes>
       
