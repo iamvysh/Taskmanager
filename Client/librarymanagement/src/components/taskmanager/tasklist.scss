@@ -1,0 +1,14 @@
+.list-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    background-color: red;
+    color: white;
+    padding: 1rem;
+
+    h5{
+        font-size: 12px;
+    }
+}

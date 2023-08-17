@@ -5,6 +5,7 @@ require("../Database/db")
 const cors=require('cors')
 const morgan=require('morgan')
 const authRoutes=require("./routes/authRoute")
+const taskRoutes=require("./routes/taskRoute")
 
 app.use(cors())
 app.use(morgan('dev'))
@@ -16,6 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/auth',authRoutes)
 
 // localhost:3000/auth/register
+
+app.use("/task",taskRoutes)
 
 
 

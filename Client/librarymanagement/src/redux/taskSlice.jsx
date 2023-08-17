@@ -43,4 +43,51 @@ export const{
     taskAddedsuccessfully,taskAddFailure,getAllTaskSuccess,getAllTaskFailure,editTaskSuccess,deleteSuccess,deleteFail
 }=taskSlice.actions
 
-export default taskSlice.reducer
+export default taskSlice.reducer;
+
+export const addTask=(task,id)=>async(dispatch)=>{
+   // console.log(task,id,"task");
+
+   const taskData={
+      task,
+      id,
+   }
+   const response=await axios.post("http://localhost:3000/task/add",taskData)
+   // console.log(response);
+   if(response){
+      localStorage.setItem('task',JSON.stringify(response.data))
+      dispatch(taskAddedsuccessfully(response.data))
+      window.location.reload()
+   }else{
+      dispatch(taskAddFailure())
+   }
+}
+
+
+export const getAllTasks=(token,id)=>async(dispatch)=>{
+
+   const config={
+      headers:{
+         Authorization:`Bearer ${token}`
+      },
+      params:{
+         
+         id,
+      }, 
+   }
+   try {
+
+
+      let response= await axios.get("http://localhost:3000/task/tasks",config)
+     console.log(response.data);
+      if(response){
+         dispatch(getAllTaskSuccess(response.data))
+      }
+   } catch (error) {
+
+      if(error.response.status===400){
+         dispatch(getAllTaskFailure())
+      }
+      
+   }
+}
