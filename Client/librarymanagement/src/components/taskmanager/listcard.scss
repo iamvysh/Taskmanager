@@ -9,5 +9,10 @@
 
     li{
         padding: 1rem;
+        flex: 1 ;
     }
+}
+.completed{
+    background-color: green;
+    color: white;
 }

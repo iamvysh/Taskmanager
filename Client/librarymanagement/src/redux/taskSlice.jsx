@@ -91,3 +91,22 @@ export const getAllTasks=(token,id)=>async(dispatch)=>{
       
    }
 }
+
+export const arrowClick=(item,string)=>async()=>{
+
+   let taskData={
+      id:item._id,
+      status:item.status,
+      string,
+   }
+
+   try {
+      let response= await axios.put(`http://localhost:3000/task/${taskData.id}`,taskData)
+      if(response){
+         window.location.reload()
+      }
+   } catch (error) {
+      console.log(error);
+   }
+}
+

@@ -48,6 +48,53 @@ const editTask=async(req,res)=>{
 
 }
 
+const statusChange=async(req,res)=>{
+    const {id,string}=req.body
+
+    try {
+        let task=await Task.findById(   {  _id:id})
+        if(string==='right'){
+            if(task.status==='backlog'){
+                task.status='todo';
+                task.save();
+                return res.send(task)
+            }else if (task.status==='todo'){
+                task.status='doing'
+                task.save()
+                return res.send(task)
+            }
+            else if (task.status==='doing'){
+                task.status='done'
+                task.save()
+                return res.send(task)
+            }
+        }
+        else {
+			if (task.status === 'done') {
+				task.status = 'doing';
+				task.save();
+				return res.send(task);
+			} else if (task.status === 'doing') {
+				task.status = 'todo';
+				task.save();
+				return res.send(task);
+			} else if (task.status === 'todo') {
+				task.status = 'backlog';
+				task.save();
+				return res.send(task);
+			}
+		}
+
+
+    } catch (error) {
+        
+    }
+}
+
+const deleteTask=async(req,res)=>{
+
+}
+
 
 
 
@@ -55,4 +102,6 @@ module.exports={
     addTask,
     getAllTasks,
     editTask,
+    statusChange,
+    deleteTask
 }
